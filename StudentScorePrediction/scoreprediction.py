@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
@@ -31,6 +32,18 @@ results_df = pd.DataFrame({
 
 print("R2 Score:", r2_score(y_test, y_pred))
 print("Mean Absolute Error:", mean_absolute_error(y_test, y_pred))
+
+
+
+
+plt.figure(figsize=(8, 6))
+plt.scatter(y_test, y_pred, alpha=0.7)
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], linestyle='--')
+plt.xlabel("Actual Final Score")
+plt.ylabel("Predicted Final Score")
+plt.title("Actual vs Predicted Final Scores")
+plt.grid(True)
+plt.show()
 
 last_five_students = df.tail(5).copy()
 last_five_X = last_five_students[["study_hours", "attendance", "sleep_hours", "previous_score"]]
